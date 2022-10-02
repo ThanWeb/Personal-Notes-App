@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
+
+:root {
+    --black: #1B2430;
+    --white: #FFFFFF;
+    --blue: #25316D;
+    --beige: #D6D5A8;
+    --red: #EF4B4B;
+    --yellow: #FFCB42;
+    --green: #6EC080;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    text-align: center;
+}
+
+body, input, textarea, button {
+    font-size: 14px;
+    font-family: 'DM Mono', monospace;
+}
+
+h3 {
+    font-size: 26px;
+    margin: 10px 0;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+button, input, textarea {
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    padding: 5px 20px;
+}
+
+button {
+    width: 100%;
+    border-color: rgb(0, 0, 0, 0);
+    color: var(--white);
+}
+
+button:hover {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 80%;
+    padding: 40px 0;
+}
+
+.container p, .container input, .container button, .container textarea {
+    margin: 5px 0;
+}
+
+.notes-search, .notes-list, .notes-archived {
+    margin-top: 30px;
+}
+
+.list-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-flow: row wrap;
+}
+
+.list-container > div {
+    flex-basis: 100%;
+}
+
+.personal-notes-card {
+    padding: 20px 0;
+}
+
+.notes-info p {
+    margin: 10px 0;
+}
+
+.input-form, .search-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.body-note, .date-note {
+    line-height: 22px;
+    text-align: justify;
+}
+
+.date-note {
+    font-size: smaller;
+}
+
+.zero-search-result {
+    text-align: center;
+}
+
+.notes-button__delete {
+    background-color: var(--red);
+}
+
+.notes-button__add {
+    background-color: var(--green);
+}
+
+.notes-button__archive {
+    background-color: var(--yellow);
+}
+
+.notes-button__unarchive {
+    background-color: var(--beige);
+}
+
+.max-alert {
+    visibility: hidden;
+}
+
+@media (min-width: 768px) {
+    .personal-notes-card {
+        padding: 20px 10px;
+    }
+}
+
+@media (min-width: 992px) {
+    .list-container div {
+        flex-basis: 50%;
+    }
+}
+
+@media (min-width: 1200px) {
+
+}
+
+@media (min-width: 1440px) {
+
+}
