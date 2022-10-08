@@ -1,5 +1,5 @@
 import React from 'react';
-import { getData, addNote } from '../utils/data.js';
+import { getNotes, addNote, searchNote, archiveNote, unarchiveNote, deleteNote } from '../utils/data.js';
 import PersonalNotesInput from './Input/PersonalNotesInput.js';
 import PersonalNotesList from './List/PersonalNotesList.js';
 import PersonalNotesArchive from './List/PersonalNotesArchive.js';
@@ -9,7 +9,7 @@ class PersonalNotesApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            notes: getData(),
+            notes: getNotes(),
             tempNotes: []
         }
 
@@ -18,79 +18,50 @@ class PersonalNotesApp extends React.Component {
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
         this.onArchiveHandler = this.onArchiveHandler.bind(this);
         this.onUnarchiveHandler = this.onUnarchiveHandler.bind(this);
-    } 
-
-    onAddHandler(title, body) {
-        const prevNotes = this.state.notes;
-        const notes = addNote(title, body, prevNotes);
-        this.setState({ notes });
-    }
-
-    onSearchHandler(Input) {
-        const prevNotes = this.state.notes;
-        const notes = addNote(title, body, prevNotes);
-        this.setState({ notes });
     }
     
-
-    addNote({ title, body }) {
-        let now = new Date();
-        const notes = this.state.notes
-        const length = notes.length;
-        notes.push(
-            {
-                id: length + 1,
-                title,
-                body,
-                createdAt: `${now.toISOString()}`,
-                archived: false,            
-            }
-        )
-        this.setState({ notes });
-    }
-
-    searchNote( input ) {
-        const notes = this.state.notes;
-        const tempNotes = [];
-        notes.forEach((note) => {
-            if((note.title.toLowerCase()).includes(input)){
-                tempNotes.push(note)
+    setNotes() {
+        this.setState(() => {
+            return {
+                notes: getNotes(),
             }
         });
-        this.setState({ tempNotes })
+    }
+
+    onAddHandler(title, body) {
+        addNote(title, body);
+        this.setNotes();
+    }
+
+    onSearchHandler(input) {
+        const newNotes = searchNote(input);
+            this.setState(() => {
+                return {
+                    tempNotes: newNotes,
+                }
+            });
     }
 
     onDeleteHandler(id) {
-        const notes = this.state.notes.filter(note => note.id !== id);
-        notes.forEach((note, index) => {
-            note.id = index + 1;
-        });
-        this.setState({ notes });
+        deleteNote(id);
+        this.setNotes();
     }
 
     onArchiveHandler(id) {
-        this.state.notes.forEach(note => {
-            if(note.id === id)
-                note.archived = true
-        });
-        const notes = this.state.notes
-        this.setState({ notes });
+        archiveNote(id);
+        this.setNotes();
     }
 
     onUnarchiveHandler(id) {
-        this.state.notes.forEach(note => {
-            if(note.id === id)
-                note.archived = false
-        });
-        const notes = this.state.notes
-        this.setState({ notes });
+        unarchiveNote(id);
+        this.setNotes();
     }
 
     render() {
         return (
             <div className="container">
-                <PersonalNotesInput addNote={this.addNote} />
-                <PersonalNotesSearch tempNotes={this.state.tempNotes} searchNote={this.searchNote}/>
+                <PersonalNotesInput addNote={this.onAddHandler} />
+                <PersonalNotesSearch tempNotes={this.state.tempNotes} searchNote={this.onSearchHandler}/>
                 <PersonalNotesList notes={this.state.notes} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
                 <PersonalNotesArchive notes={this.state.notes} onDelete={this.onDeleteHandler} onUnarchive={this.onUnarchiveHandler} />
             </div>

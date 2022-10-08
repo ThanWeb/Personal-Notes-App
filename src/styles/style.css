@@ -16,22 +16,12 @@
 }
 
 body {
-    width: 100vw;
     text-align: center;
 }
 
 body, input, textarea, button {
     font-size: 14px;
     font-family: 'DM Mono', monospace;
-}
-
-h3 {
-    font-size: 26px;
-    margin: 10px 0;
-}
-
-h4 {
-    font-size: 20px;
 }
 
 button, input, textarea {
@@ -41,78 +31,12 @@ button, input, textarea {
 }
 
 button {
-    width: 100%;
     border-color: rgb(0, 0, 0, 0);
     color: var(--white);
 }
 
 button:hover {
-    background-color: var(--black);
-    color: var(--white);
-}
 
-#root {
-    display: flex;
-    justify-content: center;
-}
-
-.container {
-    width: 80%;
-    padding: 40px 0;
-}
-
-.container p, .container input, .container button, .container textarea {
-    margin: 5px 0;
-}
-
-.notes-search, .notes-list, .notes-archived {
-    margin-top: 30px;
-}
-
-.list-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    flex-grow: 1;
-}
-
-.list-container > div {
-    flex-basis: 100%;
-}
-
-.personal-notes-card {
-    padding: 20px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.buttons {
-    width: 100%;
-}
-
-.notes-info p {
-    margin: 10px 0;
-}
-
-.input-form, .search-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.body-note, .date-note {
-    line-height: 22px;
-    text-align: justify;
-}
-
-.date-note {
-    font-size: smaller;
-}
-
-.zero-search-result {
-    text-align: center;
 }
 
 .notes-button__delete {
@@ -136,20 +60,11 @@ button:hover {
 }
 
 @media (min-width: 768px) {
-    .personal-notes-card {
-        padding: 20px;
-    }
 
-    .list-container > div {
-        flex-basis: 50%;
-    }
 }
 
 @media (min-width: 992px) {
 
-    .list-container > div {
-        flex-basis: 30%;
-    }
 }
 
 @media (min-width: 1200px) {
