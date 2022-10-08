@@ -1,5 +1,5 @@
 import React from 'react';
-import { getData } from '../utils/data.js';
+import { getData, addNote } from '../utils/data.js';
 import PersonalNotesInput from './Input/PersonalNotesInput.js';
 import PersonalNotesList from './List/PersonalNotesList.js';
 import PersonalNotesArchive from './List/PersonalNotesArchive.js';
@@ -13,12 +13,25 @@ class PersonalNotesApp extends React.Component {
             tempNotes: []
         }
 
-        this.addNote = this.addNote.bind(this);
-        this.searchNote = this.searchNote.bind(this);
+        this.onAddHandler = this.onAddHandler.bind(this);
+        this.onSearchHandler = this.onSearchHandler.bind(this);
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
         this.onArchiveHandler = this.onArchiveHandler.bind(this);
         this.onUnarchiveHandler = this.onUnarchiveHandler.bind(this);
     } 
+
+    onAddHandler(title, body) {
+        const prevNotes = this.state.notes;
+        const notes = addNote(title, body, prevNotes);
+        this.setState({ notes });
+    }
+
+    onSearchHandler(Input) {
+        const prevNotes = this.state.notes;
+        const notes = addNote(title, body, prevNotes);
+        this.setState({ notes });
+    }
+    
 
     addNote({ title, body }) {
         let now = new Date();
