@@ -34,12 +34,8 @@ class PersonalNotesApp extends React.Component {
     }
 
     onSearchHandler(input) {
-        const newNotes = searchNote(input);
-            this.setState(() => {
-                return {
-                    tempNotes: newNotes,
-                }
-            });
+        searchNote(input);
+        this.setNotes();
     }
 
     onDeleteHandler(id) {

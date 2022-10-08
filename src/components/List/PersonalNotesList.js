@@ -29,15 +29,15 @@ function PersonalNotesList({ notes, onDelete, onArchive }){
                 <h3>List Notes</h3>
                 <div className='list-container'>
                     {   
-                        unarchivedNotes.map((note) => (
-                            <div className='personal-notes-card' key={note.id} >
+                        unarchivedNotes.map((note) => 
+                            <div className={`personal-notes-card ${note.display}`} key={note.id} >
                                 <PersonalNotesItem id={note.id} {...note} />
                                 <div className='buttons'>
                                     <ArchiveButton onArchive={onArchive} id={note.id} />
                                     <DeleteButton onDelete={onDelete} id={note.id} />
                                 </div>
                             </div>
-                        ))
+                        )
                     }
                 </div>
             </div>

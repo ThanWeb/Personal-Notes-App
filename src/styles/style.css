@@ -24,7 +24,11 @@ body, input, textarea, button {
     font-family: 'DM Mono', monospace;
 }
 
-button, input, textarea {
+.hidden {
+    display: none;
+}
+
+/* button, input, textarea {
     border: 1px solid var(--black);
     border-radius: 5px;
     padding: 5px 20px;
@@ -57,7 +61,7 @@ button:hover {
 
 .max-alert {
     visibility: hidden;
-}
+} */
 
 @media (min-width: 768px) {
 

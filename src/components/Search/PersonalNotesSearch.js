@@ -27,8 +27,8 @@ class PersonalNotesSearch extends React.Component {
             <div className='notes-search'>
                 <h3>Search Note</h3>
                 <form className='search-form'>
-                    <input id="input-search" type="text" placeholder="Title ..." required onInput={this.onInputChangeEventHandler}/>
-                    <PersonalNotesSearchList tempNotes={this.props.tempNotes} input={this.state.input}/>
+                    <input id="input-search" type="text" placeholder="Title ..." required onInput={this.onInputChangeEventHandler} />
+                    <PersonalNotesSearchList tempNotes={this.props.tempNotes} input={this.state.input} />
                 </form>
                 
             </div>
