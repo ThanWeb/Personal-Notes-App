@@ -31,7 +31,9 @@ function PersonalNotesArchive({ notes, onUnarchive }) {
                         archivedNotes.map((note) => (
                             <div className='personal-notes-card'  key={note.id}>
                                 <PersonalNotesItem id={note.id} {...note} />
-                                <UnarchiveButton onUnarchive={onUnarchive} id={note.id} />
+                                <div className="buttons">
+                                    <UnarchiveButton onUnarchive={onUnarchive} id={note.id} />
+                                </div>
                             </div>
                         ))
                     }
