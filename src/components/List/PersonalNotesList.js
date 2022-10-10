@@ -1,5 +1,6 @@
 import React from 'react';
-import PersonalNotesItem from './PersonalNotesItem';
+import PropTypes from 'prop-types';
+import PersonalNotesItem from '../Detail/PersonalNotesItem';
 import DeleteButton from './DeleteButton';
 import ArchiveButton from './ArchiveButton';
 
@@ -41,6 +42,12 @@ function PersonalNotesList({ notes, onDelete, onArchive }){
             </div>
         );   
     } 
+}
+
+PersonalNotesList.propTypes = {
+    notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onArchive: PropTypes.func.isRequired
 }
 
 export default PersonalNotesList;

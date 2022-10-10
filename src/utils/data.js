@@ -50,6 +50,7 @@ let notes = [
 ];
 
 const getNotes = () => {
+    console.log(notes);
     return notes;
 }
 
@@ -101,7 +102,7 @@ const unarchiveNote = (id) => {
 const deleteNote = (id) => {
     notes = notes.filter(note => note.id !== id);
     notes.forEach((note, index) => {
-        note.id = index + 1;
+        note.id = `notes-${index + 1}`;
     });
 }
 

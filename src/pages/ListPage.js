@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PersonalNotesList from '../components/List/PersonalNotesList';
+import PersonalNotesSearch from '../components/Search/PersonalNotesSearch';
 import { getNotes, searchNote, deleteNote, archiveNote } from '../utils/data';
 
 class ListPage extends React.Component {
@@ -37,11 +39,28 @@ class ListPage extends React.Component {
         this.setNotes();
     }
 
+    // TODO :
+    // Search di archive belum bisa,
+    // Kalau bisa setiap pindah antara archive page dan list page, value dari elemen input dengan id input-search dikosongkan
+
     render() {
         return (
-            <PersonalNotesList notes={this.state.notes} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
+            <div>
+                <PersonalNotesSearch searchNote={this.onSearchHandler} />
+                <PersonalNotesList notes={this.state.notes} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
+            </div>
         );
     }
+}
+
+ListPage.propTypes = {
+    getNotes: PropTypes.func,
+    archiveNote: PropTypes.func,
+    searchNote: PropTypes.func,
+    deleteNote: PropTypes.func,
+    notes: PropTypes.arrayOf(PropTypes.object),
+    input: PropTypes.string,
+    id: PropTypes.string
 }
 
 export default ListPage;

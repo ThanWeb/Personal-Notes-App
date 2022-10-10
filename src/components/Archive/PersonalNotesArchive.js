@@ -1,5 +1,6 @@
 import React from 'react';
-import PersonalNotesItem from '../List/PersonalNotesItem';
+import PropTypes from 'prop-types';
+import PersonalNotesItem from '../Detail/PersonalNotesItem';
 import UnarchiveButton from './UnarchivedButton';
 
 const filterArchived = ({ notes }) => {
@@ -42,5 +43,10 @@ function PersonalNotesArchive({ notes, onUnarchive }) {
         )
     }
 }
+
+PersonalNotesArchive.propTypes = {
+    notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+    onUnarchive: PropTypes.func.isRequired
+};
 
 export default PersonalNotesArchive;

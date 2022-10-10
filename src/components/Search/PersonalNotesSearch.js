@@ -1,5 +1,5 @@
 import React from 'react';
-import PersonalNotesSearchList from './PersonalNotesSearchList';
+import PropTypes from 'prop-types';
 
 class PersonalNotesSearch extends React.Component {
     constructor(props) {
@@ -20,6 +20,7 @@ class PersonalNotesSearch extends React.Component {
             }
         });
         this.props.searchNote(event.target.value.toLowerCase());
+        console.log("hai");
     }
 
     render() {
@@ -28,11 +29,14 @@ class PersonalNotesSearch extends React.Component {
                 <h3>Search Note</h3>
                 <form className='search-form'>
                     <input id="input-search" type="text" placeholder="Title ..." required onInput={this.onInputChangeEventHandler} />
-                    <PersonalNotesSearchList tempNotes={this.props.tempNotes} input={this.state.input} />
                 </form>
-                
             </div>
         );        
     }
 }
+
+PersonalNotesSearch.propTypes = {
+    searchNote: PropTypes.func,
+}
+
 export default PersonalNotesSearch;

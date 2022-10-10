@@ -1,5 +1,6 @@
 import React from 'react';
 import AddButton from './AddButton';
+import PropTypes from 'prop-types';
 
 class PersonalNotesInput extends React.Component {
     constructor(props) {
@@ -65,6 +66,10 @@ class PersonalNotesInput extends React.Component {
             </div>
         );
     }
+}
+
+PersonalNotesInput.propTypes = {
+    addNote: PropTypes.func.isRequired,
 }
 
 export default PersonalNotesInput;
