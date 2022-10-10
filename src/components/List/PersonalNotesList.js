@@ -18,7 +18,6 @@ function PersonalNotesList({ notes, onDelete, onArchive }){
     if(unarchivedNotes.length === 0){
         return (
             <div className='notes-list'>
-                <h3>List Notes</h3>
                 <p className='zero-search-result'>There is nothing in here</p>
             </div>
         )
@@ -26,7 +25,6 @@ function PersonalNotesList({ notes, onDelete, onArchive }){
     else {
         return (
             <div className='notes-list'>
-                <h3>List Notes</h3>
                 <div className='list-container'>
                     {   
                         unarchivedNotes.map((note) => 

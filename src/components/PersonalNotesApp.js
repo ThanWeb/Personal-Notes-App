@@ -2,15 +2,14 @@ import React from 'react';
 import { getNotes, addNote, searchNote, archiveNote, unarchiveNote, deleteNote } from '../utils/data.js';
 import PersonalNotesInput from './Input/PersonalNotesInput.js';
 import PersonalNotesList from './List/PersonalNotesList.js';
-import PersonalNotesArchive from './List/PersonalNotesArchive.js';
+import PersonalNotesArchive from './Archive/PersonalNotesArchive.js';
 import PersonalNotesSearch from './Search/PersonalNotesSearch.js';
 
 class PersonalNotesApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            notes: getNotes(),
-            tempNotes: []
+            notes: getNotes()
         }
 
         this.onAddHandler = this.onAddHandler.bind(this);
@@ -57,7 +56,7 @@ class PersonalNotesApp extends React.Component {
         return (
             <div className="container">
                 <PersonalNotesInput addNote={this.onAddHandler} />
-                <PersonalNotesSearch tempNotes={this.state.tempNotes} searchNote={this.onSearchHandler}/>
+                <PersonalNotesSearch searchNote={this.onSearchHandler}/>
                 <PersonalNotesList notes={this.state.notes} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
                 <PersonalNotesArchive notes={this.state.notes} onDelete={this.onDeleteHandler} onUnarchive={this.onUnarchiveHandler} />
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import PersonalNotesItem from './PersonalNotesItem';
+import PersonalNotesItem from '../List/PersonalNotesItem';
 import UnarchiveButton from './UnarchivedButton';
 
 const filterArchived = ({ notes }) => {
