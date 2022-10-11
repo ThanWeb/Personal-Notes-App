@@ -8,3 +8,8 @@ In the project directory, you can run:
 
 ### `npm start`
 ### `npm run build`
+
+## To-Do
+
+Memanfaatkan search parameter agar pencarian bersifat shareable melalui URL.
+Tombol arsip dan batal arsip terdapat pada halaman detail catatan, sama seperti tombol delete.

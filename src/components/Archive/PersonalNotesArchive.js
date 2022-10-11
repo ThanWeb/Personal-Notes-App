@@ -10,37 +10,33 @@ const filterArchived = ({ notes }) => {
             archivedNotes.push(note);
     });
 
-    return archivedNotes
+    return archivedNotes;
 }
 
 function PersonalNotesArchive({ notes, onUnarchive }) {
     let archivedNotes = filterArchived({ notes });
     if(archivedNotes.length === 0){
         return (
-            <div className='notes-archived'>
-                <h3>Archived Notes</h3>
-                <p className='zero-search-result'>There is nothing in here</p>
+            <div className='archived-notes'>
+                <p className='zero-search-result'>There is zero in archive</p>
             </div>
-        )
+        );
     }
     else{
         return (
-            <div className='notes-archived'>
-                <h3>Archived Notes</h3>
-                <div className='list-container'>
-                    {   
-                        archivedNotes.map((note) => (
-                            <div className='personal-notes-card'  key={note.id}>
-                                <PersonalNotesItem id={note.id} {...note} />
-                                <div className="buttons">
-                                    <UnarchiveButton onUnarchive={onUnarchive} id={note.id} />
-                                </div>
+            <div className='archived-notes'>
+                {   
+                    archivedNotes.map((note) => (
+                        <div className='note-card'  key={note.id}>
+                            <PersonalNotesItem id={note.id} {...note} />
+                            <div className='buttons'>
+                                <UnarchiveButton onUnarchive={onUnarchive} id={note.id} />
                             </div>
-                        ))
-                    }
-                </div>
+                        </div>
+                    ))
+                }
             </div>
-        )
+        );
     }
 }
 

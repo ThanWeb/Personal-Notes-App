@@ -20,15 +20,13 @@ class PersonalNotesSearch extends React.Component {
             }
         });
         this.props.searchNote(event.target.value.toLowerCase());
-        console.log("hai");
     }
 
     render() {
         return (
-            <div className='notes-search'>
-                <h3>Search Note</h3>
+            <div className='note-search-section'>
                 <form className='search-form'>
-                    <input id="input-search" type="text" placeholder="Title ..." required onInput={this.onInputChangeEventHandler} />
+                    <input id='input-search' type='text' placeholder='Title ...' required autoComplete='off' onInput={this.onInputChangeEventHandler} />
                 </form>
             </div>
         );        
@@ -37,6 +35,6 @@ class PersonalNotesSearch extends React.Component {
 
 PersonalNotesSearch.propTypes = {
     searchNote: PropTypes.func,
-}
+};
 
 export default PersonalNotesSearch;

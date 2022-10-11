@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const stringCreatedAtLocally = (createdAt) => {
     let string = new Date(createdAt);
@@ -6,21 +7,40 @@ const stringCreatedAtLocally = (createdAt) => {
     return result;
 }
 
-function NotesInformation({ title, body, createdAt }) {
+const createTextThumbnail = (text) => {
+    let lastIndex = 0;
+    for(let i = 0; i < 80; i++){
+        if(text[i] === ' ')
+            lastIndex = i;
+    }
+
+    let result = text.slice(0, lastIndex) + '...';
+    return result;
+}
+
+function NotesInformation({ id, title, body, createdAt }) {
     let printedCreatedAt = stringCreatedAtLocally(createdAt);
+    let tempBody = '';
+
+    if(body.length > 50)
+        tempBody = createTextThumbnail(body);
+    else
+        tempBody = body;
+
     return (
-        <div className='notes-info'>
-            <h4>{title}</h4>
-            <p className="body-note">{body}</p> 
-            <p className="date-note">You added this note on {printedCreatedAt}</p>
+        <div className='note-thumbnail'>
+            <h4><Link to={`/detail/${id}`}>{title}</Link></h4>
+            <p className='body-note'>{tempBody}</p> 
+            <p className='date-note'>You added this note on {printedCreatedAt}</p>
         </div>
-    )
+    );
 }
 
 NotesInformation.propTypes = {
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired
-}
+};
 
-export default NotesInformation;
+export { NotesInformation, stringCreatedAtLocally };

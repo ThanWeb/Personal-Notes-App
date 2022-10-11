@@ -6,7 +6,7 @@ import ArchivePage from './pages/ArchivePage';
 import AddPage from './pages/AddPage';
 import DetailPage from './pages/DetailPage';
 import NotFoundPage from './pages/NotFoundPage';
-// import PersonalNotesApp from './components/PersonalNotesApp';
+import Copyright from './components/Copyright';
 
 function App() {
     return (
@@ -15,18 +15,17 @@ function App() {
                 <Navigation />
             </header>
             <main>
-                {/* <PersonalNotesApp /> */}
                 <Routes>
                     <Route path="/" element={<ListPage />} />
                     <Route path="/archive" element={<ArchivePage />} />
                     <Route path="/add" element={<AddPage />} />
-                    <Route path="/detail" element={<DetailPage />} />
-                    <Route path="/404" element={<NotFoundPage />} />
+                    <Route path="/detail/:id" element={<DetailPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </main>
-            {/* <footer className='personal-notes-footer'>
-                
-            </footer> */}
+            <footer className='personal-notes-footer'>
+                <Copyright />
+            </footer>
         </div>
     );
 }

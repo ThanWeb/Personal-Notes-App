@@ -50,7 +50,7 @@ let notes = [
 ];
 
 const getNotes = () => {
-    console.log(notes);
+    // console.log(notes);
     return notes;
 }
 
@@ -80,7 +80,7 @@ const searchNote = (input) => {
     }
     else{
         notes.forEach((note) => {
-            note.display = "showed";
+            note.display = 'showed';
         })
     }
 }
@@ -88,14 +88,14 @@ const searchNote = (input) => {
 const archiveNote = (id) => {
     notes.forEach(note => {
         if(note.id === id)
-            note.archived = true
+            note.archived = true;
     });
 }
 
 const unarchiveNote = (id) => {
     notes.forEach(note => {
         if(note.id === id)
-            note.archived = false
+            note.archived = false;
     });
 }
 
@@ -106,4 +106,18 @@ const deleteNote = (id) => {
     });
 }
 
-export { getNotes, addNote, searchNote, archiveNote, unarchiveNote, deleteNote };
+const getSingleNote = (id) => {
+    if (!id) {
+        return null;
+    }
+  
+    const filteredNotes = notes.filter((note) => note.id === id);
+  
+    if (!filteredNotes.length) {
+        return null;
+    }
+  
+    return filteredNotes[0];
+}
+
+export { getNotes, addNote, searchNote, archiveNote, unarchiveNote, deleteNote, getSingleNote };

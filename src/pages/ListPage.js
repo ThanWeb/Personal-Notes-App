@@ -39,13 +39,9 @@ class ListPage extends React.Component {
         this.setNotes();
     }
 
-    // TODO :
-    // Search di archive belum bisa,
-    // Kalau bisa setiap pindah antara archive page dan list page, value dari elemen input dengan id input-search dikosongkan
-
     render() {
         return (
-            <div>
+            <div className='homepage'>
                 <PersonalNotesSearch searchNote={this.onSearchHandler} />
                 <PersonalNotesList notes={this.state.notes} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
             </div>
@@ -61,6 +57,6 @@ ListPage.propTypes = {
     notes: PropTypes.arrayOf(PropTypes.object),
     input: PropTypes.string,
     id: PropTypes.string
-}
+};
 
 export default ListPage;

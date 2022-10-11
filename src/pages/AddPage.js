@@ -14,13 +14,13 @@ function AddPage(){
 
     return (
         <PersonalNotesInput addNote={onAddHandler} />
-    )
+    );
 }
 
 AddPage.propTypes = {
     addNote: PropTypes.func,
     title: PropTypes.string,
     body: PropTypes.string
-}
+};
 
 export default AddPage;

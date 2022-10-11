@@ -1,9 +1,10 @@
 import React from 'react';
+import NoteNotFound from '../components/Detail/NoteNorFound';
 
 function NotFoundPage() {
     return (
-        <h1>404 NOT FOUND</h1>
-    )
+        <NoteNotFound />
+    );
 }
 
 export default NotFoundPage;
