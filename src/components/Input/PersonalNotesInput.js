@@ -21,7 +21,7 @@ class PersonalNotesInput extends React.Component {
         if(event.target.value.length > 50){
             document.querySelector('.max-alert').innerHTML = 'Maximum 50 characters for title';
             document.querySelector('.max-alert').style.visibility = 'visible';
-            document.querySelector('.notes-button__add').disabled = true;
+            document.querySelector('.submit-button').style.visibility = 'hidden';
         }
         else {
             if(event.target.value.length > 35){
@@ -31,7 +31,7 @@ class PersonalNotesInput extends React.Component {
             }
             else
                 document.querySelector('.max-alert').style.visibility = 'hidden';
-            document.querySelector('.notes-button__add').disabled = false;
+            document.querySelector('.submit-button').style.visibility = 'visible';
             this.setState(() => {
                 return {
                     title: event.target.value,

@@ -21,7 +21,6 @@ function App() {
                     <Route path="/add" element={<AddPage />} />
                     <Route path="/detail/:id" element={<DetailPage />} />
                     <Route path="*" element={<NotFoundPage />} />
-                    <Route path="*/?*" element={<NotFoundPage />} />
                 </Routes>
             </main>
             <footer className='personal-notes-footer'>

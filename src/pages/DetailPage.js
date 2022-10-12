@@ -44,7 +44,9 @@ class DetailPage extends React.Component {
         }
     
         return (
-            <DetailNote {...this.state.note} onDelete={this.props.onDelete} onArchive={this.props.onArchive} onUnarchive={this.props.onUnarchive} />
+            <div className="detail-page">
+                <DetailNote {...this.state.note} onDelete={this.props.onDelete} onArchive={this.props.onArchive} onUnarchive={this.props.onUnarchive} />
+            </div>
         );
     }
 }

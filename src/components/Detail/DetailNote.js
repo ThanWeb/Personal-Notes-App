@@ -9,9 +9,11 @@ function DetailNote({ id, title, body, archived, createdAt, onDelete, onArchive,
     let printedCreatedAt = stringCreatedAtLocally(createdAt);
     return (
         <div className='note-detail'>
-            <h2>{title}</h2>
-            <p>{body}</p>
-            <p className='date-note'>You added this note on {printedCreatedAt}</p>
+            <div className='detail-body'>
+                <h3>{title}</h3>
+                <p>{body}</p>
+                <p className='date-note'>You added this note on {printedCreatedAt}</p>
+            </div>
             {!archived ?
             <div className='buttons'>
                 <ArchiveButton onArchive={onArchive} id={id} />
