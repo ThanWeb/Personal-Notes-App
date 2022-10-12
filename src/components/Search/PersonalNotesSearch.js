@@ -6,7 +6,7 @@ class PersonalNotesSearch extends React.Component {
         super(props);
  
         this.state = {
-            input: '',
+            input: this.onLoadHandler(props.defaultKeyword),
         }
     
         this.onInputChangeEventHandler = this.onInputChangeEventHandler.bind(this);
@@ -22,11 +22,20 @@ class PersonalNotesSearch extends React.Component {
         this.props.searchNote(event.target.value.toLowerCase());
     }
 
+    onLoadHandler(keyword) {
+        if(keyword){
+            this.props.searchNote(keyword);
+            return keyword;
+        }
+        else
+            return '';
+    }
+
     render() {
         return (
             <div className='note-search-section'>
                 <form className='search-form'>
-                    <input id='input-search' type='text' placeholder='Title ...' required autoComplete='off' onInput={this.onInputChangeEventHandler} />
+                    <input id='input-search' value={this.state.input} type='text' placeholder='Title ...' required autoComplete='off' onInput={this.onInputChangeEventHandler} />
                 </form>
             </div>
         );        

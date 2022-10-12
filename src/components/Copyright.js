@@ -8,7 +8,7 @@ const findYear = () => {
  
 function Copyright() {
     return (
-        <p>Copyright &#169; ${findYear()} Hans Rio. All Right Reserved</p>
+        <p>Copyright &#169; {findYear()} Hans Rio. All Right Reserved</p>
     );
 }
  

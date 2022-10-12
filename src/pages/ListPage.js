@@ -3,6 +3,27 @@ import PropTypes from 'prop-types';
 import PersonalNotesList from '../components/List/PersonalNotesList';
 import PersonalNotesSearch from '../components/Search/PersonalNotesSearch';
 import { getNotes, searchNote, deleteNote, archiveNote } from '../utils/data';
+import { useSearchParams } from 'react-router-dom';
+
+function ListPageWrapper() {
+    const [searchParams, setSearchParams] = useSearchParams();
+    let title = searchParams.get('title');
+
+    function deleteQuery(){
+        searchParams.delete('title');
+        setSearchParams(searchParams);
+    }
+
+    function changeSearchParams(keyword) {
+        if(keyword.length === 0){
+            deleteQuery();
+        }
+        else
+            setSearchParams({ title: keyword });
+    }
+    
+    return <ListPage onSearch={changeSearchParams} activeKeyword={title} />;
+}
 
 class ListPage extends React.Component {
     constructor(props) {
@@ -27,6 +48,7 @@ class ListPage extends React.Component {
     onSearchHandler(input) {
         searchNote(input);
         this.setNotes();
+        this.props.onSearch(input);
     }
 
     onDeleteHandler(id) {
@@ -42,7 +64,7 @@ class ListPage extends React.Component {
     render() {
         return (
             <div className='homepage'>
-                <PersonalNotesSearch searchNote={this.onSearchHandler} />
+                <PersonalNotesSearch searchNote={this.onSearchHandler} defaultKeyword={this.props.activeKeyword} />
                 <PersonalNotesList notes={this.state.notes} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
             </div>
         );
@@ -59,4 +81,4 @@ ListPage.propTypes = {
     id: PropTypes.string
 };
 
-export default ListPage;
+export default ListPageWrapper;
