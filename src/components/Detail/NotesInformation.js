@@ -29,7 +29,13 @@ function NotesInformation({ id, title, body, createdAt }) {
 
     return (
         <div className='note-thumbnail'>
-            <h4><Link to={`/detail/${id}`}>{title}</Link></h4>
+            <div className="head-thumbnail">
+                <h4>{title}</h4>
+                <Link to={`/detail/${id}`} className='notes-button detail-page-button'>
+                    <img src='http://antekteknologi.my.id/wp-content/uploads/2022/10/see_more_icon.png' alt='see-more'/>
+                    <span>See more</span>
+                </Link>
+            </div>
             <p className='body-note'>{tempBody}</p> 
             <p className='date-note'>You added this note on {printedCreatedAt}</p>
         </div>

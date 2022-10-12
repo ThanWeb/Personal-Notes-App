@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
  
 function UnarchiveButton({ id, onUnarchive }) {
-    return <button className='notes-button__unarchive' onClick={() => onUnarchive(id)}>Unarchive</button>;
+    return (
+        <button className='notes-button unarchive-button' onClick={() => onUnarchive(id)}>
+            <img src='http://antekteknologi.my.id/wp-content/uploads/2022/10/unarchive_icon.png' alt='unarchive'/>
+            <span>Unarchive</span>
+        </button>
+    );
 }
 
 UnarchiveButton.propTypes = {

@@ -35,7 +35,7 @@ class PersonalNotesSearch extends React.Component {
         return (
             <div className='note-search-section'>
                 <form className='search-form'>
-                    <input id='input-search' value={this.state.input} type='text' placeholder='Title ...' required autoComplete='off' onInput={this.onInputChangeEventHandler} />
+                    <input id='input-search' value={this.state.input} type='text' placeholder='Search Note Title ...' required autoComplete='off' onInput={this.onInputChangeEventHandler} />
                 </form>
             </div>
         );        
