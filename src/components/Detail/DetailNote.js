@@ -12,8 +12,16 @@ function DetailNote({ id, title, body, archived, createdAt, onDelete, onArchive,
             <h2>{title}</h2>
             <p>{body}</p>
             <p className='date-note'>You added this note on {printedCreatedAt}</p>
-            <DeleteButton onDelete={onDelete} id={id} />
-            {!archived ? <ArchiveButton onArchive={onArchive} id={id} /> : <UnarchiveButton onUnarchive={onUnarchive} id={id} />}
+            {!archived ?
+            <div className='buttons'>
+                <DeleteButton onDelete={onDelete} id={id} />
+                <ArchiveButton onArchive={onArchive} id={id} />
+            </div>
+            :
+            <div className='buttons'>
+                <UnarchiveButton onUnarchive={onUnarchive} id={id} />
+            </div>
+            }
         </div>
     );
 }
