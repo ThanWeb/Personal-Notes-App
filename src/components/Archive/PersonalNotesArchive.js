@@ -18,7 +18,7 @@ function PersonalNotesArchive({ notes, onUnarchive }) {
     if(archivedNotes.length === 0){
         return (
             <div className='archived-notes'>
-                <p className='zero-search-result'>There is zero in archive</p>
+                <p className='zero-search-result'>Archive is empty</p>
             </div>
         );
     }

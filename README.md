@@ -11,5 +11,4 @@ In the project directory, you can run:
 
 ## To-Do
 
-Memanfaatkan search parameter agar pencarian bersifat shareable melalui URL.
-Tombol arsip dan batal arsip terdapat pada halaman detail catatan, sama seperti tombol delete.
+Muncul page not found  di saat url tidak cocok pada bagian query, bagian path sudah

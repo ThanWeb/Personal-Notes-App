@@ -29,7 +29,7 @@ function PersonalNotesList({ notes, onDelete, onArchive }){
     if(unarchivedNotes.length === 0){
         return (
             <div className='list-notes'>
-                <p className='zero-note-alert'>There is nothing in here</p>
+                <p className='zero-note-alert'>List is empty</p>
             </div>
         );
     }    else if(checkShowedLists === 0){

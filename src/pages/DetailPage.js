@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import DetailNote from '../components/Detail/DetailNote';
 import NoteNotFound from '../components/Detail/NoteNorFound';
 import { useParams } from 'react-router-dom';
-import { getSingleNote, deleteNote } from '../utils/data';
+import { getSingleNote, deleteNote, archiveNote, unarchiveNote } from '../utils/data';
 import { useNavigate } from 'react-router-dom';
 
 function DetailPageWrapper() {
@@ -14,7 +14,18 @@ function DetailPageWrapper() {
         deleteNote(id);
         navigate('/');
     }
-    return <DetailPage id={id} onDelete={onDeleteHandler}/>;
+
+    function onArchiveHandler(id) {
+        archiveNote(id);
+        navigate('/');
+    }
+
+        function onUnarchiveHandler(id) {
+        unarchiveNote(id);
+        navigate('/');
+    }
+
+    return <DetailPage id={id} onDelete={onDeleteHandler} onArchive={onArchiveHandler} onUnarchive={onUnarchiveHandler} />;
 }
 class DetailPage extends React.Component {
     constructor(props) {
@@ -33,7 +44,7 @@ class DetailPage extends React.Component {
         }
     
         return (
-            <DetailNote {...this.state.note} onDelete={this.props.onDelete} />
+            <DetailNote {...this.state.note} onDelete={this.props.onDelete} onArchive={this.props.onArchive} onUnarchive={this.props.onUnarchive} />
         );
     }
 }
