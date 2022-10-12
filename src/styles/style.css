@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
 
 :root {
     --black: #1B2430;
@@ -21,7 +21,7 @@ body {
 
 body, input, textarea, button {
     font-size: 14px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Barlow', sans-serif;
 }
 
 .hidden {
