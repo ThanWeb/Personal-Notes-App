@@ -44,6 +44,7 @@ class PersonalNotesSearch extends React.Component {
 
 PersonalNotesSearch.propTypes = {
     searchNote: PropTypes.func,
+    defaultKeyword: PropTypes.string
 };
 
 export default PersonalNotesSearch;

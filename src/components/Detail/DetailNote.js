@@ -33,6 +33,7 @@ DetailNote.propTypes = {
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,
+    archived: PropTypes.bool.isRequired,
     onDelete: PropTypes.func.isRequired,
     onArchive: PropTypes.func.isRequired,
     onUnarchive: PropTypes.func.isRequired

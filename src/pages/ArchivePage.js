@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import PersonalNotesArchive from '../components/Archive/PersonalNotesArchive';
 import { getNotes, unarchiveNote } from '../utils/data';
 class ArchivePage extends React.Component {
@@ -31,12 +30,5 @@ class ArchivePage extends React.Component {
         );
     }
 }
-
-ArchivePage.propTypes = {
-    getNotes: PropTypes.func,
-    unarchiveNote: PropTypes.func,
-    searchNote: PropTypes.func,
-    notes: PropTypes.arrayOf(PropTypes.object)
-};
 
 export default ArchivePage;
