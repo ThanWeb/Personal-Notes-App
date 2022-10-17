@@ -58,7 +58,7 @@ class PersonalNotesInput extends React.Component {
             <div className='note-add-section'>
                 <h3>Input New Note</h3>
                 <form className='input-form' onSubmit={this.onSubmitEventHandler}>
-                    <input type='text' placeholder='Title ...' required onChange={this.onTitleChangeEventHandler} />
+                    <input type='text' placeholder='Title ...' required onChange={this.onTitleChangeEventHandler} maxLength='50'/>
                     <textarea type='text' placeholder='Your Note ...' required onChange={this.onBodyChangeEventHandler} rows='5'/> 
                     <AddButton />
                     <p className='max-alert'>Alert</p>

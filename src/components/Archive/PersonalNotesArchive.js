@@ -41,8 +41,26 @@ function PersonalNotesArchive({ notes, onUnarchive }) {
 }
 
 PersonalNotesArchive.propTypes = {
-    notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+    notes: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+        title: PropTypes.string,
+        body: PropTypes.string,
+        archived: PropTypes.bool,
+        createdAt: PropTypes.string,
+        display: PropTypes.string
+    })),
     onUnarchive: PropTypes.func.isRequired
 };
+
+filterArchived.propTypes = {
+    notes: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+        title: PropTypes.string,
+        body: PropTypes.string,
+        archived: PropTypes.bool,
+        createdAt: PropTypes.string,
+        display: PropTypes.string
+    })),
+}
 
 export default PersonalNotesArchive;

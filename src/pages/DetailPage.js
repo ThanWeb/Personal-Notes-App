@@ -53,6 +53,8 @@ class DetailPage extends React.Component {
 
 DetailPage.propTypes = {
     onDelete: PropTypes.func.isRequired,
+    onArchive: PropTypes.func.isRequired,
+    onUnarchive: PropTypes.func.isRequired,
     note: PropTypes.object
 };
   

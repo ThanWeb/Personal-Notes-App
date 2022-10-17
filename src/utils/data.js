@@ -50,7 +50,7 @@ let notes = [
 ];
 
 const getNotes = () => {
-    console.log(notes);
+    // console.log(notes);
     return notes;
 }
 

@@ -72,13 +72,8 @@ class ListPage extends React.Component {
 }
 
 ListPage.propTypes = {
-    getNotes: PropTypes.func,
-    archiveNote: PropTypes.func,
-    searchNote: PropTypes.func,
-    deleteNote: PropTypes.func,
-    notes: PropTypes.arrayOf(PropTypes.object),
-    input: PropTypes.string,
-    id: PropTypes.string
+    onSearch: PropTypes.func,
+    defaultKeyword: PropTypes.string
 };
 
 export default ListPageWrapper;
