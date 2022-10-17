@@ -116,11 +116,15 @@ header {
 
 .add-page-button {
     position: fixed;
-    bottom: 3em;
-    right: 2em;
+    bottom: 2em;
+    right: 1em;
 }
 
 .add-page-button img {
+    background-color: var(--white);
+    border-radius: 50%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .18);
+    margin: 0;
     width: 4em;
 }
 
