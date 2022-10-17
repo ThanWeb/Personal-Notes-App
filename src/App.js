@@ -7,8 +7,45 @@ import AddPage from './pages/AddPage';
 import DetailPage from './pages/DetailPage';
 import NotFoundPage from './pages/NotFoundPage';
 import Copyright from './components/Copyright';
+import { getUserLogged, putAccessToken } from './utils/network-data';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+
 
 function App() {
+    const [authedUser, setAuthedUser] = React.useState(null);
+    const [initialize, setInitialize] = React.useState(true);
+
+    React.useEffect(() => {
+        getLoginStatus();
+        setInitialize(false);
+    }, []);
+
+    async function getLoginStatus() {
+        const { data } = await getUserLogged();
+        setAuthedUser(data);
+    }
+
+    if (initialize) {
+        return null;
+    }
+
+    if (authedUser === null) {
+        return (
+            <div className="personal-notes-app">
+                <main>
+                    <Routes>
+                        <Route path="/" element={<LoginPage />} />
+                        <Route path="/register" element={<RegisterPage />} />
+                    </Routes>
+                </main>
+                <footer className='personal-notes-footer'>
+                    <Copyright />
+                </footer>
+            </div>
+        );
+    }
+
     return (
         <div className="personal-notes-app">
             <header className='personal-notes-header'>
