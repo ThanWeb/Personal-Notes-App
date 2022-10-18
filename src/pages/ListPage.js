@@ -1,79 +1,63 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import PersonalNotesList from '../components/List/PersonalNotesList';
 import PersonalNotesSearch from '../components/Search/PersonalNotesSearch';
-import { getNotes, searchNote, deleteNote, archiveNote } from '../utils/data';
+import { searchNote, deleteNote, archiveNote } from '../utils/data';
+import { getActiveNotes } from '../utils/network-data';
 import { useSearchParams } from 'react-router-dom';
 
-function ListPageWrapper() {
+function ListPage() {
     const [searchParams, setSearchParams] = useSearchParams();
+    const [notes, setAllNotes] = useState([]);
+
     let title = searchParams.get('title');
 
-    function deleteQuery(){
+    React.useEffect(() => {
+        getActiveNotes().then(({ data }) => {
+            setAllNotes(data);
+        });
+        // console.log(notes);
+    }, []);
+
+    const deleteQuery = () => {
         searchParams.delete('title');
         setSearchParams(searchParams);
     }
 
-    function changeSearchParams(keyword) {
+    const changeSearchParams = (keyword) => {
         if(keyword.length === 0){
             deleteQuery();
         }
         else
             setSearchParams({ title: keyword });
     }
-    
-    return <ListPage onSearch={changeSearchParams} activeKeyword={title} />;
-}
 
-class ListPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            notes: getNotes()
-        }
-        
-        this.onSearchHandler = this.onSearchHandler.bind(this);
-        this.onDeleteHandler = this.onDeleteHandler.bind(this);
-        this.onArchiveHandler = this.onArchiveHandler.bind(this);
-    }
-    
-    setNotes() {
-        this.setState(() => {
-            return {
-                notes: getNotes(),
-            }
-        });
+    const setNotes = () => {
+        let { data } = getActiveNotes();
+        setAllNotes(data);
     }
 
-    onSearchHandler(input) {
+    const onSearchHandler = (input) => {
         searchNote(input);
-        this.setNotes();
-        this.props.onSearch(input);
+        setNotes();
+        changeSearchParams(input);
     }
 
-    onDeleteHandler(id) {
+    const onDeleteHandler = (id) => {
         deleteNote(id);
-        this.setNotes();
+        setNotes();
     }
 
-    onArchiveHandler(id) {
+    const onArchiveHandler = (id) => {
         archiveNote(id);
-        this.setNotes();
+        setNotes();
     }
 
-    render() {
-        return (
-            <div className='homepage'>
-                <PersonalNotesSearch searchNote={this.onSearchHandler} defaultKeyword={this.props.activeKeyword} />
-                <PersonalNotesList notes={this.state.notes} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
-            </div>
-        );
-    }
+    return (
+        <div className='homepage'>
+            <PersonalNotesSearch searchNote={onSearchHandler} defaultKeyword={title} />
+            <PersonalNotesList notes={notes} onDelete={onDeleteHandler} onArchive={onArchiveHandler} />
+        </div>
+    );
 }
 
-ListPage.propTypes = {
-    onSearch: PropTypes.func,
-    defaultKeyword: PropTypes.string
-};
-
-export default ListPageWrapper;
+export default ListPage;

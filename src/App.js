@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navigation from './components/Navigation';
-import ListPageWrapper from './pages/ListPage';
+import ListPage from './pages/ListPage';
 import ArchivePage from './pages/ArchivePage';
 import AddPage from './pages/AddPage';
 import DetailPage from './pages/DetailPage';
@@ -64,7 +64,7 @@ function App() {
             </header>
             <main>
                 <Routes>
-                    <Route path="/" element={<ListPageWrapper />} />
+                    <Route path="/" element={<ListPage />} />
                     <Route path="/archive" element={<ArchivePage />} />
                     <Route path="/add" element={<AddPage />} />
                     <Route path="/detail/:id" element={<DetailPage />} />
