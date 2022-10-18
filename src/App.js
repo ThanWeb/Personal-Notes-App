@@ -26,6 +26,17 @@ function App() {
         setAuthedUser(data);
     }
 
+    async function onLoginSuccess({ accessToken }) {
+        putAccessToken(accessToken);
+        const { data } = await getUserLogged();
+        setAuthedUser(data);
+    }
+
+    const onLogout = () => {
+        setAuthedUser(null);
+        putAccessToken('');
+    }
+
     if (initialize) {
         return null;
     }
@@ -35,7 +46,7 @@ function App() {
             <div className="personal-notes-app">
                 <main>
                     <Routes>
-                        <Route path="/" element={<LoginPage />} />
+                        <Route path="/" element={<LoginPage loginSuccess={onLoginSuccess}/>} />
                         <Route path="/register" element={<RegisterPage />} />
                     </Routes>
                 </main>
@@ -49,7 +60,7 @@ function App() {
     return (
         <div className="personal-notes-app">
             <header className='personal-notes-header'>
-                <Navigation />
+                <Navigation logout={onLogout} />
             </header>
             <main>
                 <Routes>

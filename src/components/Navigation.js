@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
  
-function Navigation() {
+function Navigation({ logout }) {
     return (
         <nav className="navigation">
             <div>
@@ -21,6 +21,10 @@ function Navigation() {
                     <img src='http://antekteknologi.my.id/wp-content/uploads/2022/10/bookmark_icon.png' alt='archive'/>
                     <span>Archived</span>
                 </Link>
+                <button className='notes-button log-out-button' onClick={logout}>
+                    <img src='http://antekteknologi.my.id/wp-content/uploads/2022/10/logout-icon.png' alt='log-out'/>
+                    <span>Log out</span>
+                </button>
             </div>
         </nav>
     );
