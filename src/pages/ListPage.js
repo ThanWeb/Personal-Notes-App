@@ -15,7 +15,6 @@ function ListPage() {
         getActiveNotes().then(({ data }) => {
             setAllNotes(data);
         });
-        // console.log(notes);
     }, []);
 
     const deleteQuery = () => {
@@ -34,6 +33,7 @@ function ListPage() {
     const setNotes = () => {
         let { data } = getActiveNotes();
         setAllNotes(data);
+        console.log(notes);
     }
 
     const onSearchHandler = (input) => {

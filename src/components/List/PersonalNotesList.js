@@ -14,32 +14,34 @@ const filterUnarchived = ({ notes }) => {
     return unarchivedNotes;
 }
 
-const filterShowed = (array) => {
-    let total = 0;
-    array.forEach(item => {
-        if(item.display === "showed")
-            total++;
-    });
-    return total;
-}
+// const filterShowed = (array) => {
+//     let total = 0;
+//     array.forEach(item => {
+//         if(item.display === "showed")
+//             total++;
+//         console.log(item);
+//     });
+//     return total;
+// }
  
 function PersonalNotesList({ notes, onDelete, onArchive }){
     let unarchivedNotes = filterUnarchived({ notes });
-    let checkShowedLists = filterShowed(unarchivedNotes);
+    // let checkShowedLists = filterShowed(unarchivedNotes);
     if(unarchivedNotes.length === 0){
         return (
             <div className='list-notes'>
                 <p className='zero-note-alert'>List is empty</p>
             </div>
         );
-    }    else if(checkShowedLists === 0){
-        return (
-            <div className='list-notes'>
-                <p className='note-not-found'>There is no match </p>
-            </div>
-        );
-    }
-    else if(checkShowedLists !== 0) {
+    } 
+    // else if(checkShowedLists === 0){
+    //     return (
+    //         <div className='list-notes'>
+    //             <p className='note-not-found'>There is no match </p>
+    //         </div>
+    //     );
+    // }
+    else {
         return (
             <div className='list-notes'>
                 {   
@@ -59,7 +61,7 @@ function PersonalNotesList({ notes, onDelete, onArchive }){
 }
 
 PersonalNotesList.propTypes = {
-    notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+    notes: PropTypes.arrayOf(PropTypes.object),
     onDelete: PropTypes.func.isRequired,
     onArchive: PropTypes.func.isRequired
 };

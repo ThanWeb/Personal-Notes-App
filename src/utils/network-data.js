@@ -92,7 +92,7 @@ async function getActiveNotes() {
     if (responseJson.status !== 'success') {
         return { error: true, data: null };
     }
-
+    console.log(responseJson)
     return { error: false, data: responseJson.data };
 }
 

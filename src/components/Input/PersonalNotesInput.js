@@ -1,22 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AddButton from './AddButton';
 import PropTypes from 'prop-types';
 
-class PersonalNotesInput extends React.Component {
-    constructor(props) {
-        super(props);
- 
-        this.state = {
-            title: '',
-            body: '',
-        }
-    
-        this.onTitleChangeEventHandler = this.onTitleChangeEventHandler.bind(this);
-        this.onBodyChangeEventHandler = this.onBodyChangeEventHandler.bind(this);
-        this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this);
-    }
- 
-    onTitleChangeEventHandler(event) {
+function PersonalNotesInput({ addNote }) {
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
+
+    const onTitleChangeEventHandler = (event) => {
         let left;
         if(event.target.value.length > 50){
             document.querySelector('.max-alert').innerHTML = 'Maximum 50 characters for title';
@@ -32,40 +22,34 @@ class PersonalNotesInput extends React.Component {
             else
                 document.querySelector('.max-alert').style.visibility = 'hidden';
             document.querySelector('.submit-button').style.visibility = 'visible';
-            this.setState(() => {
-                return {
-                    title: event.target.value,
-                }
-            });
+            setTitle(event.target.value);
         }
     }
     
-    onBodyChangeEventHandler(event) {
-        this.setState(() => {
-            return {
-                body: event.target.value,
-            }
-        });
+    const onBodyChangeEventHandler = (event) => {
+        setBody(event.target.value);
     }
     
-    onSubmitEventHandler(event) {
+    const onSubmitEventHandler = (event) => {
         event.preventDefault();
-        this.props.addNote(this.state);
+        const note = {
+            title: title,
+            body: body
+        }
+        addNote(note);
     }
-    
-    render() {
-        return (
-            <div className='note-add-section'>
-                <h3>Input New Note</h3>
-                <form className='input-form' onSubmit={this.onSubmitEventHandler}>
-                    <input type='text' placeholder='Title ...' required onChange={this.onTitleChangeEventHandler} maxLength='50'/>
-                    <textarea type='text' placeholder='Your Note ...' required onChange={this.onBodyChangeEventHandler} rows='5'/> 
-                    <AddButton />
-                    <p className='max-alert'>Alert</p>
-                </form>
-            </div>
-        );
-    }
+
+    return (
+        <div className='note-add-section'>
+            <h3>Input New Note</h3>
+            <form className='input-form' onSubmit={onSubmitEventHandler}>
+                <input type='text' placeholder='Title ...' required onChange={onTitleChangeEventHandler} maxLength='50'/>
+                <textarea type='text' placeholder='Your Note ...' required onChange={onBodyChangeEventHandler} rows='5'/> 
+                <AddButton />
+                <p className='max-alert'>Alert</p>
+            </form>
+        </div>
+    );
 }
 
 PersonalNotesInput.propTypes = {
