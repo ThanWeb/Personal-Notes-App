@@ -4,16 +4,6 @@ import PersonalNotesItem from '../Detail/PersonalNotesItem';
 import DeleteButton from './DeleteButton';
 import ArchiveButton from './ArchiveButton';
 
-const filterUnarchived = ({ notes }) => {
-    let unarchivedNotes = [];
-    notes.forEach(note => {
-        if(!(note.archived))
-            unarchivedNotes.push(note);
-    });
-
-    return unarchivedNotes;
-}
-
 // const filterShowed = (array) => {
 //     let total = 0;
 //     array.forEach(item => {
@@ -25,7 +15,7 @@ const filterUnarchived = ({ notes }) => {
 // }
  
 function PersonalNotesList({ notes, onDelete, onArchive }){
-    let unarchivedNotes = filterUnarchived({ notes });
+    let unarchivedNotes = notes;
     // let checkShowedLists = filterShowed(unarchivedNotes);
     if(unarchivedNotes.length === 0){
         return (
@@ -61,7 +51,13 @@ function PersonalNotesList({ notes, onDelete, onArchive }){
 }
 
 PersonalNotesList.propTypes = {
-    notes: PropTypes.arrayOf(PropTypes.object),
+    notes: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+        title: PropTypes.string,
+        body: PropTypes.string,
+        archived: PropTypes.bool,
+        createdAt: PropTypes.string
+    })),
     onDelete: PropTypes.func.isRequired,
     onArchive: PropTypes.func.isRequired
 };

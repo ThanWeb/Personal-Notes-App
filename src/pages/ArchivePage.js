@@ -1,34 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PersonalNotesArchive from '../components/Archive/PersonalNotesArchive';
-import { getNotes, unarchiveNote } from '../utils/data';
-class ArchivePage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            notes: getNotes()
-        }
+import { unarchiveNote, getArchivedNotes } from '../utils/network-data';
 
-        this.onUnarchiveHandler = this.onUnarchiveHandler.bind(this);
-    }
+function ArchivePage() {
+    const [archivedNotes, setArchivedNotes] = useState([]);
 
-    setNotes() {
-        this.setState(() => {
-            return {
-                notes: getNotes(),
-            }
+    React.useEffect(() => {
+        getArchivedNotes().then(({ data }) => {
+            setArchivedNotes(data);
         });
+    }, []);
+
+    const setNotes = async () => {
+        let { data } = await getArchivedNotes();
+        setArchivedNotes(data);
     }
 
-    onUnarchiveHandler(id) {
+    const onUnarchiveHandler = async (id) => {
         unarchiveNote(id);
-        this.setNotes();
+        setNotes();
     }
 
-    render() {
-        return (
-            <PersonalNotesArchive notes={this.state.notes} onUnarchive={this.onUnarchiveHandler} />
-        );
-    }
+    return (
+        <PersonalNotesArchive notes={archivedNotes} onUnarchive={onUnarchiveHandler} />
+    );
 }
 
 export default ArchivePage;

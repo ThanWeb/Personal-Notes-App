@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PersonalNotesList from '../components/List/PersonalNotesList';
 import PersonalNotesSearch from '../components/Search/PersonalNotesSearch';
-import { searchNote, deleteNote, archiveNote } from '../utils/data';
-import { getActiveNotes } from '../utils/network-data';
+import { searchNote } from '../utils/data';
+import { getActiveNotes, deleteNote, archiveNote } from '../utils/network-data';
 import { useSearchParams } from 'react-router-dom';
 
 function ListPage() {
@@ -30,10 +30,9 @@ function ListPage() {
             setSearchParams({ title: keyword });
     }
 
-    const setNotes = () => {
-        let { data } = getActiveNotes();
+    const setNotes = async () => {
+        let { data } = await getActiveNotes();
         setAllNotes(data);
-        console.log(notes);
     }
 
     const onSearchHandler = (input) => {
@@ -42,13 +41,13 @@ function ListPage() {
         changeSearchParams(input);
     }
 
-    const onDeleteHandler = (id) => {
-        deleteNote(id);
+    const onDeleteHandler = async (id) => {
+        await deleteNote(id);
         setNotes();
     }
 
-    const onArchiveHandler = (id) => {
-        archiveNote(id);
+    const onArchiveHandler = async (id) => {
+        await archiveNote(id);
         setNotes();
     }
 

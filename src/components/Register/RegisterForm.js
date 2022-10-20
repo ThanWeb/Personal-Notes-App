@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterForm({ register }) {
+    const navigate = useNavigate();
     const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -25,6 +27,7 @@ function RegisterForm({ register }) {
 
     const onSubmitHandler = () => {
         register({name: name, email: email, password: password});
+        navigate('/');
     }
 
     return (

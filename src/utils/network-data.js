@@ -92,7 +92,7 @@ async function getActiveNotes() {
     if (responseJson.status !== 'success') {
         return { error: true, data: null };
     }
-    console.log(responseJson)
+    
     return { error: false, data: responseJson.data };
 }
 
@@ -104,6 +104,8 @@ async function getArchivedNotes() {
         return { error: true, data: null };
     }
 
+    // PERBAIKI TAMPILAN NOT FOUND
+ 
     return { error: false, data: responseJson.data };
 }
 
@@ -122,13 +124,13 @@ async function archiveNote(id) {
     const response = await fetchWithToken(`${BASE_URL}/notes/${id}/archive`, {
         method: 'POST',
     });
-
+  
     const responseJson = await response.json();
-
+  
     if (responseJson.status !== 'success') {
         return { error: true, data: null };
     }
-
+  
     return { error: false, data: responseJson.data };
 }
 
