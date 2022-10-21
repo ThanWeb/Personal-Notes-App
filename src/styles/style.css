@@ -148,7 +148,7 @@ main {
     margin-top: var(--top-gap);
 }
 
-.homepage, .archived-notes, .detail-page, .note-add-section {
+.homepage, .archived-notes, .detail-page, .note-add-section, .not-found-alert {
     padding: 2em 0 1em;
 }
 
@@ -201,6 +201,10 @@ main {
 
 .max-alert {
     visibility: hidden;
+}
+
+.not-found-alert button{
+    margin: 1em 0 0;
 }
 
 @media (min-width: 768px) {

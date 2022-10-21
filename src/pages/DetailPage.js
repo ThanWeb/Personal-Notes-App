@@ -15,7 +15,7 @@ function DetailPage() {
         getNote(id).then(({ data }) => {
             setNote(data);
         });
-    });
+    }, [id]);
 
     const moveToHome = () => {
         navigate('/');
