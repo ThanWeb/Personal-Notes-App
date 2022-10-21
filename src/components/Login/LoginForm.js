@@ -1,17 +1,10 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import useInput from '../../hooks/useInput';
 
 function LoginForm({ login }) {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-
-    const onEmailChange = (event) => {
-        setEmail(event.target.value);
-    }
-
-    const onPasswordChange = (event) => {
-        setPassword(event.target.value);
-    }
+    const [email, onEmailChange] = useInput('');
+    const [password, onPasswordChange] = useInput('');
 
     const onSubmitHandler = () => {
         login({email: email, password: password});

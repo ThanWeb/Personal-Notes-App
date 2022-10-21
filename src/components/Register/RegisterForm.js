@@ -1,29 +1,14 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import useInput from '../../hooks/useInput';
 
 function RegisterForm({ register }) {
     const navigate = useNavigate();
-    const [name, setName] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const [confirm, setConfirm] = React.useState('');
-
-    const onNameChange = (event) => {
-        setName(event.target.value);
-    }
-
-    const onEmailChange = (event) => {
-        setEmail(event.target.value);
-    }
-
-    const onPasswordChange = (event) => {
-        setPassword(event.target.value);
-    }
-
-    const onConfirmChange = (event) => {
-        setConfirm(event.target.value);
-    }
+    const [name, onNameChange] = useInput('');
+    const [email, onEmailChange] = useInput('');
+    const [password, onPasswordChange] = useInput('');
+    const [confirm, onConfirmChange] = useInput('');
 
     const onSubmitHandler = () => {
         register({name: name, email: email, password: password});
