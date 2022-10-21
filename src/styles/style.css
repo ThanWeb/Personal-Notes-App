@@ -3,7 +3,6 @@
 :root {
     --black: #1B2430;
     --white: #FFFFFF;
-    --blue: #070121;
     --top-gap: 6em;
 }
 
@@ -60,6 +59,39 @@ p {
 
 li {
     list-style: none;
+}
+
+.personal-notes-app {
+    min-height: calc(100vh - var(--top-gap));
+}
+
+.dark {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.dark span, .dark a {
+    color: var(--white);
+}
+
+.dark .note-card, .dark .note-detail {
+    border: 1px solid var(--white);
+}
+
+.dark .notes-button img, .dark .theme-button {
+    filter: invert(80%);
+    background-color: inherit;
+    box-shadow: none;
+}
+
+.dark input, .dark textarea {
+    background-color: var(--black);
+    color: var(--white);
+    border: 1px solid var(--white);
+}
+
+.dark ::placeholder {
+    color: var(--white);
 }
 
 .hidden {
@@ -128,7 +160,22 @@ header {
     width: 4em;
 }
 
+.theme-button {
+    position: fixed;
+    bottom: 2em;
+    left: 2em;
+    background-color: var(--white);
+    border-radius: 50%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .18);
+    margin: 0;
+    width: 4em;
+}
+
 /* LOGIN & REGISTER */
+
+.login-page, .register-page {
+    padding-top: var(--top-gap);
+}
 
 .login-form, .register-form {
     display: flex;
@@ -166,7 +213,7 @@ main {
     margin: 1em 2em;
     padding: 1em;
     text-align: justify;
-    border: 1px solid var(--blue);
+    border: 1px solid var(--black);
     box-sizing: border-box;
 }
 
