@@ -30,7 +30,7 @@ function NotesInformation({ id, title, body, createdAt }) {
     return (
         <div className='note-thumbnail'>
             <div className="head-thumbnail">
-                <h3>{title}</h3>
+                <h3 className='title-note'>{title}</h3>
                 <Link to={`/detail/${id}`} className='notes-button detail-page-button'>
                     <img src='http://antekteknologi.my.id/wp-content/uploads/2022/10/see_more_icon.png' alt='see-more'/>
                 </Link>
