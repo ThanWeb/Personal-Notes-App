@@ -7,7 +7,7 @@ import ArchiveButton from './ArchiveButton';
 // const filterShowed = (array) => {
 //     let total = 0;
 //     array.forEach(item => {
-//         if(item.display === "showed")
+//         if(item.display === 'showed')
 //             total++;
 //         console.log(item);
 //     });

@@ -64,13 +64,13 @@ function App() {
     if (authedUser === null) {
         return (
             <ThemeProvider value={theme}>
-                <div className={theme === 'light' ? "personal-notes-app" : "personal-notes-app dark"}>
-                    <header className={theme === 'light' ? "personal-notes-header" : "personal-notes-header dark"}>
+                <div className={theme === 'light' ? 'personal-notes-app' : 'personal-notes-app dark'}>
+                    <header className={theme === 'light' ? 'personal-notes-header' : 'personal-notes-header dark'}>
                     </header>
                     <main>
                         <Routes>
-                            <Route path="/" element={<LoginPage loginSuccess={onLoginSuccess}/>} />
-                            <Route path="/register" element={<RegisterPage />} />
+                            <Route path='/' element={<LoginPage loginSuccess={onLoginSuccess}/>} />
+                            <Route path='/register' element={<RegisterPage />} />
                         </Routes>
                     </main>
                     <footer className='personal-notes-footer'>
@@ -83,17 +83,17 @@ function App() {
 
     return (
         <ThemeProvider value={theme}>
-            <div className={theme === 'light' ? "personal-notes-app" : "personal-notes-app dark"}>
-                <header className={theme === 'light' ? "personal-notes-header" : "personal-notes-header dark"}>
+            <div className={theme === 'light' ? 'personal-notes-app' : 'personal-notes-app dark'}>
+                <header className={theme === 'light' ? 'personal-notes-header' : 'personal-notes-header dark'}>
                     <Navigation logout={onLogout} setTheme={setTheme}/>
                 </header>
                 <main>
                     <Routes>
-                        <Route path="/" element={<ListPage />} />
-                        <Route path="/archive" element={<ArchivePage />} />
-                        <Route path="/add" element={<AddPage />} />
-                        <Route path="/detail/:id" element={<DetailPage />} />
-                        <Route path="*" element={<NotFoundPage />} />
+                        <Route path='/' element={<ListPage />} />
+                        <Route path='/archive' element={<ArchivePage />} />
+                        <Route path='/add' element={<AddPage />} />
+                        <Route path='/detail/:id' element={<DetailPage />} />
+                        <Route path='*' element={<NotFoundPage />} />
                     </Routes>
                 </main>
                 <footer className='personal-notes-footer'>

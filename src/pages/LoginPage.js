@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LoginForm from '../components/Login/LoginForm';
 import { login } from '../utils/network-data';
+import PropTypes from 'prop-types';
 
 function LoginPage({ loginSuccess }) {
     async function onLogin({ email, password }) {
@@ -19,6 +20,10 @@ function LoginPage({ loginSuccess }) {
             <p>Doesn't have account? <Link to="/register">Register Here.</Link></p>
         </section>
     );
+}
+
+LoginPage.propTypes = {
+    loginSuccess: PropTypes.func
 }
  
 export default LoginPage;
