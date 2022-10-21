@@ -12,8 +12,8 @@ function DeleteButton({ id, onDelete }) {
 }
 
 DeleteButton.propTypes = {
-    id: PropTypes.string.isRequired,
-    onDelete: PropTypes.func
+    id: PropTypes.string,
+    onDelete: PropTypes.func.isRequired
 };
  
 export default DeleteButton;

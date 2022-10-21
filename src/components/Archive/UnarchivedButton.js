@@ -11,7 +11,7 @@ function UnarchiveButton({ id, onUnarchive }) {
 }
 
 UnarchiveButton.propTypes = {
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     onUnarchive: PropTypes.func.isRequired
 };
  

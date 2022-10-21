@@ -29,11 +29,11 @@ function DetailNote({ id, title, body, archived, createdAt, onDelete, onArchive,
 }
 
 DetailNote.propTypes = {
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-    archived: PropTypes.bool.isRequired,
+    id: PropTypes.string,
+    title: PropTypes.string,
+    body: PropTypes.string,
+    createdAt: PropTypes.string,
+    archived: PropTypes.bool,
     onDelete: PropTypes.func.isRequired,
     onArchive: PropTypes.func.isRequired,
     onUnarchive: PropTypes.func.isRequired
