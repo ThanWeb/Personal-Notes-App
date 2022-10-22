@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeConsumer } from '../contexts/ThemeContext';
+import PropTypes from 'prop-types';
  
 function Navigation({ logout, setTheme }) {
     return (
@@ -35,6 +36,11 @@ function Navigation({ logout, setTheme }) {
             }
         </ThemeConsumer>
     );
+}
+
+Navigation.propType = {
+    logout: PropTypes.func,
+    setTheme: PropTypes.func
 }
  
 export default Navigation;
