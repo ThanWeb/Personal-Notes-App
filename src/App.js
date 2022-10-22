@@ -10,16 +10,15 @@ import Copyright from './components/Copyright';
 import { getUserLogged, putAccessToken } from './utils/network-data';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-// import { LanguageProvider } from './contexts/LanguageContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { useSearchParams } from 'react-router-dom';
+import Loading from './components/Loading';
 
 function App() {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const [authedUser, setAuthedUser] = React.useState(null);
     const [initialize, setInitialize] = React.useState(true);
-    // const [language, toggleLanguage] = React.useState();
     const [theme, toggleTheme] = React.useState('');
 
     React.useEffect(() => {
@@ -49,7 +48,7 @@ function App() {
     async function getLoginStatus() {
         const { error, data } = await getUserLogged();
         if(error){
-            putAccessToken('');
+            localStorage.removeItem("accessToken");
             if(searchParams.get('title'))
                 deleteQuery();        
         }
@@ -62,13 +61,16 @@ function App() {
 
     async function onLoginSuccess({ accessToken }) {
         putAccessToken(accessToken);
-        const { data } = await getUserLogged();
-        setAuthedUser(data);
+        const { error, data } = await getUserLogged();
+        if(!error){
+            setAuthedUser(data);
+            navigate('/');
+        }
     }
 
     const onLogout = () => {
         setAuthedUser(null);
-        putAccessToken('');
+        localStorage.removeItem("accessToken");
         navigate('/');
     }
 
@@ -88,6 +90,7 @@ function App() {
                             <Route path='/register' element={<RegisterPage />} />
                         </Routes>
                     </main>
+                    <Loading />
                     <footer className='personal-notes-footer'>
                         <Copyright />
                     </footer>
@@ -111,6 +114,7 @@ function App() {
                         <Route path='*' element={<NotFoundPage />} />
                     </Routes>
                 </main>
+                <Loading />
                 <footer className='personal-notes-footer'>
                     <Copyright />
                 </footer>

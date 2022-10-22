@@ -254,6 +254,24 @@ main {
     margin: 1em 0 0;
 }
 
+/* LOADING */
+
+.loading-alert {
+    z-index: 999;
+    background-color: rgba(0, 0, 0, .75);
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
+
+/* MEDIA QUERY */
+
 @media (min-width: 768px) {
     .list-notes, .archived-notes {
         display: flex;

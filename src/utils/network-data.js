@@ -19,6 +19,7 @@ async function fetchWithToken(url, options = {}) {
 }
 
 async function login({ email, password }) {
+    showLoading();
     const response = await fetch(`${BASE_URL}/login`, {
         method: 'POST',
         headers: {
@@ -28,6 +29,7 @@ async function login({ email, password }) {
     });
 
     const responseJson = await response.json();
+    hideLoading();
 
     if (responseJson.status !== 'success') {
         alert(responseJson.message);
@@ -38,6 +40,7 @@ async function login({ email, password }) {
 }
 
 async function register({ name, email, password }) {
+    showLoading();
     const response = await fetch(`${BASE_URL}/register`, {
         method: 'POST',
         headers: {
@@ -47,6 +50,7 @@ async function register({ name, email, password }) {
     });
 
     const responseJson = await response.json();
+    hideLoading();
 
     if (responseJson.status !== 'success') {
         alert(responseJson.message);
@@ -57,8 +61,10 @@ async function register({ name, email, password }) {
 }
 
 async function getUserLogged() {
+    showLoading();
     const response = await fetchWithToken(`${BASE_URL}/users/me`);
     const responseJson = await response.json();
+    hideLoading();
 
     if (responseJson.status !== 'success') {
         return { error: true, data: null };
@@ -68,6 +74,7 @@ async function getUserLogged() {
 }
 
 async function addNote({ title, body }) {
+    showLoading();
     const response = await fetchWithToken(`${BASE_URL}/notes`, {
         method: 'POST',
         headers: {
@@ -77,6 +84,7 @@ async function addNote({ title, body }) {
     });
 
     const responseJson = await response.json();
+    hideLoading();
 
     if (responseJson.status !== 'success') {
         return { error: true, data: null };
@@ -86,8 +94,10 @@ async function addNote({ title, body }) {
 }
 
 async function getActiveNotes() {
+    showLoading();
     const response = await fetchWithToken(`${BASE_URL}/notes`);
     const responseJson = await response.json();
+    hideLoading();
 
     if (responseJson.status !== 'success') {
         return { error: true, data: null };
@@ -97,21 +107,23 @@ async function getActiveNotes() {
 }
 
 async function getArchivedNotes() {
+    showLoading();
     const response = await fetchWithToken(`${BASE_URL}/notes/archived`);
     const responseJson = await response.json();
+    hideLoading();
 
     if (responseJson.status !== 'success') {
         return { error: true, data: null };
     }
-
-    // PERBAIKI TAMPILAN NOT FOUND
  
     return { error: false, data: responseJson.data };
 }
 
 async function getNote(id) {
+    showLoading();
     const response = await fetchWithToken(`${BASE_URL}/notes/${id}`);
     const responseJson = await response.json();
+    hideLoading();
 
     if (responseJson.status !== 'success') {
         return { error: true, data: null };
@@ -121,11 +133,13 @@ async function getNote(id) {
 }
 
 async function archiveNote(id) {
+    showLoading();
     const response = await fetchWithToken(`${BASE_URL}/notes/${id}/archive`, {
         method: 'POST',
     });
   
     const responseJson = await response.json();
+    hideLoading();
   
     if (responseJson.status !== 'success') {
         return { error: true, data: null };
@@ -135,11 +149,13 @@ async function archiveNote(id) {
 }
 
 async function unarchiveNote(id) {
+    showLoading();
     const response = await fetchWithToken(`${BASE_URL}/notes/${id}/unarchive`, {
         method: 'POST',
     });
 
     const responseJson = await response.json();
+    hideLoading();
 
     if (responseJson.status !== 'success') {
         return { error: true, data: null };
@@ -149,17 +165,29 @@ async function unarchiveNote(id) {
 }
 
 async function deleteNote(id) {
+    showLoading();
     const response = await fetchWithToken(`${BASE_URL}/notes/${id}`, {
         method: 'DELETE',
     });
 
     const responseJson = await response.json();
+    hideLoading();
 
     if (responseJson.status !== 'success') {
         return { error: true, data: null };
     }
 
-  return { error: false, data: responseJson.data };
+    return { error: false, data: responseJson.data };
+}
+
+const showLoading = () => {
+    if(document.querySelector('.personal-notes-app'))
+        document.querySelector('.loading-alert').classList.remove('hidden');
+}
+
+const hideLoading = () => {
+    if(document.querySelector('.personal-notes-app'))
+        document.querySelector('.loading-alert').classList.add('hidden');
 }
 
 export {
