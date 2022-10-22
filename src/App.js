@@ -12,10 +12,11 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 // import { LanguageProvider } from './contexts/LanguageContext';
 import { ThemeProvider } from './contexts/ThemeContext';
-
+import { useSearchParams } from 'react-router-dom';
 
 function App() {
     const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
     const [authedUser, setAuthedUser] = React.useState(null);
     const [initialize, setInitialize] = React.useState(true);
     // const [language, toggleLanguage] = React.useState();
@@ -26,6 +27,11 @@ function App() {
         setInitialize(false);
         getTheme();
     }, []);
+
+    const deleteQuery = () => {
+        searchParams.delete('title');
+        setSearchParams(searchParams);
+    }
 
     const getTheme = () => {
         let currentTheme = localStorage.getItem('theme') || 'light';
@@ -41,8 +47,17 @@ function App() {
     }
 
     async function getLoginStatus() {
-        const { data } = await getUserLogged();
-        setAuthedUser(data);
+        const { error, data } = await getUserLogged();
+        if(error){
+            putAccessToken('');
+            if(searchParams.get('title'))
+                deleteQuery();        
+        }
+        else{
+            setAuthedUser(data);
+            if(searchParams.get('title'))
+                deleteQuery();    
+        }
     }
 
     async function onLoginSuccess({ accessToken }) {

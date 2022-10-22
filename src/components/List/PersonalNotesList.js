@@ -3,40 +3,29 @@ import PropTypes from 'prop-types';
 import PersonalNotesItem from '../Detail/PersonalNotesItem';
 import DeleteButton from './DeleteButton';
 import ArchiveButton from './ArchiveButton';
-
-// const filterShowed = (array) => {
-//     let total = 0;
-//     array.forEach(item => {
-//         if(item.display === 'showed')
-//             total++;
-//         console.log(item);
-//     });
-//     return total;
-// }
  
-function PersonalNotesList({ notes, onDelete, onArchive }){
+function PersonalNotesList({ notes, onDelete, onArchive, searchStatus, showedNote }){
     let unarchivedNotes = notes;
-    // let checkShowedLists = filterShowed(unarchivedNotes);
     if(unarchivedNotes.length === 0){
         return (
             <div className='list-notes'>
                 <p className='zero-note-alert'>List is empty</p>
             </div>
         );
-    } 
-    // else if(checkShowedLists === 0){
-    //     return (
-    //         <div className='list-notes'>
-    //             <p className='note-not-found'>There is no match </p>
-    //         </div>
-    //     );
-    // }
+    }
+    else if(searchStatus === 0){
+        return (
+            <div className='list-notes'>
+                <p className='zero-search-alert'>There is no match</p>
+            </div>
+        );
+    }
     else {
         return (
             <div className='list-notes'>
                 {   
-                    unarchivedNotes.map((note) => 
-                        <div className={`note-card ${note.display}`} key={note.id} >
+                    unarchivedNotes.map((note, index) => 
+                        <div className={ showedNote[index] === false ? 'note-card hidden' : 'note-card'} key={note.id} >
                             <PersonalNotesItem id={note.id} {...note} />
                             <div className='buttons'>
                                 <ArchiveButton onArchive={onArchive} id={note.id} />
@@ -59,7 +48,9 @@ PersonalNotesList.propTypes = {
         createdAt: PropTypes.string
     })),
     onDelete: PropTypes.func.isRequired,
-    onArchive: PropTypes.func.isRequired
+    onArchive: PropTypes.func.isRequired,
+    searchStatus: PropTypes.number,
+    showedNote: PropTypes.arrayOf(PropTypes.bool)
 };
 
 export default PersonalNotesList;

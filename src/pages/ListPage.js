@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import PersonalNotesList from '../components/List/PersonalNotesList';
 import PersonalNotesSearch from '../components/Search/PersonalNotesSearch';
-import { searchNote } from '../utils/data';
 import { getActiveNotes, deleteNote, archiveNote } from '../utils/network-data';
 import { useSearchParams } from 'react-router-dom';
 
 function ListPage() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [notes, setAllNotes] = useState([]);
+    const [searchStatus, setSearchStatus] = useState(1);
+    const [showedNote, setShowedNote] = useState([]);
 
     let title = searchParams.get('title');
 
@@ -36,9 +37,18 @@ function ListPage() {
     }
 
     const onSearchHandler = (input) => {
-        searchNote(input);
-        setNotes();
+        let flag = 0, arrShowed = [];
+        notes.forEach((note) => {
+            if(!(note.title.toLowerCase()).includes(input))
+                arrShowed.push(false)
+            else{
+                arrShowed.push(true);
+                flag++;
+            }
+        });
         changeSearchParams(input);
+        setSearchStatus(flag);
+        setShowedNote(arrShowed);
     }
 
     const onDeleteHandler = async (id) => {
@@ -54,7 +64,7 @@ function ListPage() {
     return (
         <div className='homepage'>
             <PersonalNotesSearch searchNote={onSearchHandler} defaultKeyword={title} />
-            <PersonalNotesList notes={notes} onDelete={onDeleteHandler} onArchive={onArchiveHandler} />
+            <PersonalNotesList notes={notes} onDelete={onDeleteHandler} onArchive={onArchiveHandler} searchStatus={searchStatus} showedNote={showedNote} />
         </div>
     );
 }

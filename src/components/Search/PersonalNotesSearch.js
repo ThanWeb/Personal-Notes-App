@@ -11,7 +11,7 @@ class PersonalNotesSearch extends React.Component {
     
         this.onInputChangeEventHandler = this.onInputChangeEventHandler.bind(this);
     }
- 
+    
     onInputChangeEventHandler(event) {
         event.preventDefault();
         this.setState(() => {
